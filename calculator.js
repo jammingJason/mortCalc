@@ -7,11 +7,6 @@ window.addEventListener('DOMContentLoaded', function() {
 			update();
 		});
 	}
-
-	const subButton = document.querySelector('button');
-	subButton.addEventListener('click', function(event) {
-		update();
-	});
 });
 
 function getCurrentUIValues() {
@@ -49,7 +44,9 @@ function calculateMonthlyPayment(values) {
 	const monthlyRate = rate / 100 / 12;
 	const n = Math.floor(years * 12);
 	let monthlyAmount = monthlyRate * amount / (1 - Math.pow(1 + monthlyRate, -n));
-	return updateMonthly(monthlyAmount.toFixed(2));
+
+	updateMonthly(monthlyAmount.toFixed(2));
+	return monthlyAmount.toFixed(2);
 }
 
 // Given a string representing the monthly payment value,
@@ -57,5 +54,5 @@ function calculateMonthlyPayment(values) {
 function updateMonthly(monthly) {
 	// alert(monthly);
 	const shownAmount = document.querySelector('#monthly-payment');
-	return (shownAmount.innerText = '$' + monthly);
+	// shownAmount.innerHTML = '$' + monthly;
 }
